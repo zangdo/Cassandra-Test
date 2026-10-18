@@ -1,0 +1,56 @@
+{
+  "keyspace": "ml_bench_100000",
+  "csv": "D:\\.vscode\\tuchimbe\\ml-25m\\ratings.csv",
+  "rows": 100000,
+  "source_sha256": "7b217a0553487ad7aeba34594f8848ecce3e3c8085bcd06509b98a8c5e9e7d0a",
+  "complete": true,
+  "created_utc": "2026-10-18T09:31:59.138350+00:00",
+  "write_consistency": "ALL",
+  "replication_factor": 3,
+  "cassandra_version": "5.0.9",
+  "driver_version": "3.30.1",
+  "top_movies": [
+    [
+      356,
+      370
+    ],
+    [
+      296,
+      363
+    ],
+    [
+      318,
+      352
+    ],
+    [
+      593,
+      325
+    ],
+    [
+      2571,
+      315
+    ],
+    [
+      480,
+      300
+    ],
+    [
+      260,
+      292
+    ],
+    [
+      527,
+      280
+    ],
+    [
+      110,
+      267
+    ],
+    [
+      589,
+      255
+    ]
+  ],
+  "completed_utc": "2026-10-18T09:33:35.689593+00:00",
+  "import_seconds": 96.49206310001318
+}

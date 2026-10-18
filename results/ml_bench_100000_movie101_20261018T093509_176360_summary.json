@@ -1,0 +1,61 @@
+{
+  "created_utc": "2026-10-18T09:35:19.556913+00:00",
+  "keyspace": "ml_bench_100000",
+  "imported_source_rows": 100000,
+  "movie_id": 101,
+  "expected_result_rows": 12,
+  "read_consistency": "ONE",
+  "write_consistency": "ALL",
+  "replication_factor": 3,
+  "fetch_size": 1000,
+  "rounds": 8,
+  "host": "127.0.0.1",
+  "port": 9042,
+  "client_timeout_seconds": 60,
+  "pause_seconds": 1,
+  "cassandra_version": "5.0.9",
+  "driver_version": "3.30.1",
+  "python_version": "3.10.1 (tags/v3.10.1:2cd268a, Dec  6 2021, 19:10:37) [MSC v.1929 64 bit (AMD64)]",
+  "queries": {
+    "filtered_scan": "SELECT user_id, rating_time, movie_id, rating FROM ratings_by_user WHERE movie_id=? ALLOW FILTERING",
+    "partition_lookup": "SELECT user_id, rating_time, movie_id, rating FROM ratings_by_movie WHERE movie_id=?"
+  },
+  "runs_csv": "D:\\.vscode\\tuchimbe\\results\\ml_bench_100000_movie101_20261018T093509_176360_runs.csv",
+  "warmup": [
+    {
+      "phase": "warmup",
+      "round": 0,
+      "query": "filtered_scan",
+      "status": "OK",
+      "elapsed_ms": 156.27279999898747,
+      "returned_rows": 12,
+      "detail": ""
+    },
+    {
+      "phase": "warmup",
+      "round": 0,
+      "query": "partition_lookup",
+      "status": "OK",
+      "elapsed_ms": 18.95430000149645,
+      "returned_rows": 12,
+      "detail": ""
+    }
+  ],
+  "query_statistics": {
+    "filtered_scan": {
+      "ok": 8,
+      "errors_or_mismatches": 0,
+      "median_ms": 59.21330000273883,
+      "min_ms": 50.17860000953078,
+      "max_ms": 127.49399998574518
+    },
+    "partition_lookup": {
+      "ok": 8,
+      "errors_or_mismatches": 0,
+      "median_ms": 9.654299996327609,
+      "min_ms": 4.959899990353733,
+      "max_ms": 37.72890000254847
+    }
+  },
+  "scan_over_lookup_ratio": 6.1333602669549245
+}

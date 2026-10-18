@@ -1,0 +1,66 @@
+services:
+  cassandra1:
+    image: cassandra:5.0
+    container_name: cassandra1
+    environment:
+      - CASSANDRA_CLUSTER_NAME=BDSP-Cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    ports:
+      - "9042:9042"
+    networks:
+      - cassandra-net
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - "nodetool info | grep -Eq '^Gossip active[[:space:]]*:[[:space:]]*true' && nodetool info | grep -Eq '^Native Transport active[[:space:]]*:[[:space:]]*true'"
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
+
+  cassandra2:
+    image: cassandra:5.0
+    container_name: cassandra2
+    environment:
+      - CASSANDRA_CLUSTER_NAME=BDSP-Cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_SEEDS=cassandra1
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    depends_on:
+      cassandra1:
+        condition: service_healthy
+    networks:
+      - cassandra-net
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - "nodetool info | grep -Eq '^Gossip active[[:space:]]*:[[:space:]]*true' && nodetool info | grep -Eq '^Native Transport active[[:space:]]*:[[:space:]]*true'"
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
+
+  cassandra3:
+    image: cassandra:5.0
+    container_name: cassandra3
+    environment:
+      - CASSANDRA_CLUSTER_NAME=BDSP-Cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_SEEDS=cassandra1
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    depends_on:
+      cassandra2:
+        condition: service_healthy
+
+    networks:
+      - cassandra-net
+
+networks:
+  cassandra-net:
