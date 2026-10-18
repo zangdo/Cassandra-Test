@@ -104,7 +104,7 @@ Các lệnh này là quan sát hoạt động; một lần thấy ít tải khô
 ## 5. Đo và kiểm chứng
 
 ```powershell
-uv run --python 3.12 benchmark.py run --manifest .\results\ml_bench_100000_manifest.json --movie 101
+uv run --python 3.10 benchmark.py run --manifest .\results\ml_bench_100000_manifest.json --movie 101
 ```
 
 Mặc định chương trình:
@@ -138,11 +138,11 @@ Nếu phim không có trong subset, chương trình sẽ dừng và gợi ý cá
 ## 6. Tăng lượng dữ liệu
 
 ```powershell
-uv run --python 3.12 benchmark.py load --csv .\ml-25m\ratings.csv --rows 500000
-uv run --python 3.12 benchmark.py run --manifest .\results\ml_bench_500000_manifest.json --movie 101
+uv run --python 3.10 benchmark.py load --csv .\ml-25m\ratings.csv --rows 500000
+uv run --python 3.10 benchmark.py run --manifest .\results\ml_bench_500000_manifest.json --movie 101
 
-uv run --python 3.12 benchmark.py load --csv .\ml-25m\ratings.csv --rows 1000000
-uv run --python 3.12 benchmark.py run --manifest .\results\ml_bench_1000000_manifest.json --movie 101
+uv run --python 3.10 benchmark.py load --csv .\ml-25m\ratings.csv --rows 1000000
+uv run --python 3.10 benchmark.py run --manifest .\results\ml_bench_1000000_manifest.json --movie 101
 ```
 
 Mỗi mức dùng keyspace riêng, không cộng dồn nhầm các lần nạp. Mỗi bảng của mức đó chứa cùng subset.
@@ -188,8 +188,8 @@ không đo khả năng scale của ba máy vật lý độc lập.
   Nếu import bị gián đoạn/lỗi, tạo bộ thử mới, ví dụ:
 
   ```powershell
-  uv run --python 3.12 benchmark.py load --csv .\ml-25m\ratings.csv --rows 100000 --keyspace ml_bench_100k_retry --concurrency 4
-  uv run --python 3.12 benchmark.py run --manifest .\results\ml_bench_100k_retry_manifest.json --movie 101
+  uv run --python 3.10 benchmark.py load --csv .\ml-25m\ratings.csv --rows 100000 --keyspace ml_bench_100k_retry --concurrency 4
+  uv run --python 3.10 benchmark.py run --manifest .\results\ml_bench_100k_retry_manifest.json --movie 101
   ```
 
   Script không tự xóa keyspace cũ và không dùng dữ liệu import dở để đo.
